@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Entidades;
+using Datos;
+
+namespace Negocio
+{
+    public class nDocente
+    {
+        dDocente docentedatos;
+
+        public nDocente()
+        {
+            docentedatos = new dDocente();
+        }
+
+        public string RegistrarDocente(string nombre, string apellido, string escuela)
+        {
+            eDocente docente = new eDocente()
+            {
+                Nombre = nombre,
+                Apellido = apellido,
+                Escuela = escuela
+            };
+            return docentedatos.Insertar(docente);
+        }
+
+        public string ActualizarDocente(int id_docente, string nombre, string apellido, string escuela)
+        {
+            eDocente docente = new eDocente()
+            {
+                Id_Docente = id_docente,
+                Nombre = nombre,
+                Apellido = apellido,
+                Escuela = escuela
+            };
+            return docentedatos.Modificar(docente); 
+        }
+
+        public string EliminarDocente(int id)
+        {
+            return docentedatos.Elimina(id);
+        }
+
+        public List<eDocente>ListarDocentes()
+        {
+            return docentedatos.ListarTodo();
+        }
+
+        public List<eDocente>BuscarPorEscuela(string escuela)
+        {
+            return docentedatos.BuscarPorEscuela(escuela);
+        }
+    }
+}
